@@ -1,24 +1,541 @@
-  1 <!DOCTYPE html>                                                             
-  2 <html lang="en">                                                            
-  3 <head>                                                                      
-  4     <meta charset="UTF-8">                                                  
-  5     <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-  6     <title>At Foot-Steps of Water | 4DK-2HD Intelligence</title>            
-  7     <style>                                                                 
-  8         /* COLOR SPECTRUM MAPPING */                                        
-  9         :root {                                                             
- 10             --bright-orange: #ff8c00;                                       
- 11             --dark-orange: #e65100;                                         
- 12             --lemon-green: #ccff00;                                         
- 13             --dark-purple: #311b92;                                         
- 14             --lukewarm-purple: #7e57c2;                                     
- 15             --pure-white: #ffffff;                                          
- 16             --void-black: #000000;                                          
- 17         }                                                                   
- 18                                                                             
- 19         * { margin: 0; padding: 0; box-sizing: border-box; }                
- 20                                                                             
- 21         body {                                                              
- 22             background-color: var(--pure-white);                            
-/home/saintlordnakamoto/WebsiteBuilding/WaterWebsite/index.html (1,1) | ft:html 
-                                                                                
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>At Foot-Steps of Water | 4DK-2HD Intelligence</title>
+    <style>
+        /* COLOR SPECTRUM MAPPING */
+        :root {
+            --bright-orange: #ff8c00;
+            --dark-orange: #e65100;
+            --lemon-green: #ccff00;
+            --dark-purple: #311b92;
+            --lukewarm-purple: #7e57c2;
+            --pure-white: #ffffff;
+            --void-black: #000000;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--pure-white);
+            color: var(--void-black);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* TOP GLIDING CONTRAST MENU */
+        .gliding-nav {
+            position: fixed;
+            top: 0; width: 100%;
+            height: 70px;
+            background: linear-gradient(90deg, var(--dark-purple), var(--dark-orange));
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .gliding-nav a {
+            color: var(--lemon-green);
+            text-decoration: none;
+            font-weight: 900;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            transition: 0.3s;
+            padding: 10px 20px;
+        }
+
+        .gliding-nav a:hover {
+            background: var(--bright-orange);
+            color: var(--void-black);
+            border-radius: 5px;
+        }
+
+        /* 2PX INTELLIGENT KEYWORD VECTORING */
+        .vector-text {
+            font-size: calc(1em + 2px);
+            font-weight: bold;
+            color: var(--dark-purple);
+            font-style: italic;
+        }
+
+        /* SECTIONAL SLIDE & GLIDE ARCHITECTURE */
+        section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 10%;
+            transition: 1s transform ease;
+        }
+
+        .content-card {
+            background: var(--lemon-green);
+            padding: 60px;
+            border-radius: 0 100px 0 100px;
+            border: 8px solid var(--dark-purple);
+            box-shadow: 20px 20px 0px var(--bright-orange);
+            max-width: 1000px;
+            transform: translateY(50px);
+            opacity: 0;
+            transition: 1s all ease;
+        }
+
+        .content-card.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        h1, h2 { 
+            text-transform: uppercase; 
+            margin-bottom: 20px; 
+            background: var(--dark-purple);
+            color: var(--lemon-green);
+            padding: 10px;
+            display: inline-block;
+        }
+
+        /* CIRCULAR WIDGET SYSTEM */
+        .widget-hub {
+            position: fixed;
+            bottom: 40px; right: 40px;
+            z-index: 2000;
+        }
+
+        .core-circle {
+            width: 140px; height: 140px;
+            background: var(--bright-orange);
+            border: 5px solid var(--dark-purple);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 900;
+            text-align: center;
+            font-size: 0.7rem;
+            box-shadow: 0 0 30px var(--bright-orange);
+            transition: 0.5s;
+        }
+
+        .square-data {
+            position: absolute;
+            width: 180px; height: 180px;
+            background: var(--lukewarm-purple);
+            border: 3px solid var(--lemon-green);
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            opacity: 0;
+            transform: scale(0);
+            transition: 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            pointer-events: none;
+            color: var(--pure-white);
+            font-size: 0.8rem;
+        }
+
+        .hub-active .sq-1 { opacity: 1; transform: translate(-220px, -220px) scale(1); pointer-events: auto; }
+        .hub-active .sq-2 { opacity: 1; transform: translate(40px, -220px) scale(1); pointer-events: auto; }
+        .hub-active .sq-3 { opacity: 1; transform: translate(-220px, 40px) scale(1); pointer-events: auto; }
+        .hub-active .sq-4 { opacity: 1; transform: translate(40px, 40px) scale(1); pointer-events: auto; }
+
+        /* SCROLL BAR */
+        ::-webkit-scrollbar { width: 15px; }
+        ::-webkit-scrollbar-track { background: var(--dark-purple); }
+        ::-webkit-scrollbar-thumb { background: var(--lemon-green); border: 3px solid var(--dark-purple); }
+
+        /* ITALIC QUOTATION BLOCKS */
+        blockquote {
+            font-style: italic;
+            border-left: 10px solid var(--dark-orange);
+            padding-left: 20px;
+            margin: 20px 0;
+            color: var(--dark-purple);
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="gliding-nav">
+        <a href="#survival">Survival Vector</a>
+        <a href="#oxygen">Oxygen Matrix</a>
+        <a href="#canada">Canadian Voids</a>
+        <a href="#telkwa">Telkwa Awareness</a>
+        <a href="#aid">Global Aid</a>
+    </nav>
+
+    <div class="widget-hub" id="main-hub">
+        <div class="core-circle" onclick="toggleHub()">
+            KNOW THE<br>UNKNOWN
+        </div>
+        <div class="square-data sq-1">
+            <strong>SMITHEERS BC</strong>
+            <p>The One Water Store: A pinnacle of high-filtration intelligence.</p>
+            <a href="https://www.tipoftheglacier.com/" style="color:var(--lemon-green)">VISIT SOURCE</a>
+        </div>
+        <div class="square-data sq-2">
+            <strong>HYDRATION</strong>
+            <p>Calculate the input/output ratio of your cellular engine.</p>
+        </div>
+        <div class="square-data sq-3">
+            <strong>PURE BREATHS</strong>
+            <p>Oxygen-Liquid bonds ($O_2+H_2$) are the fuel for the cortex.</p>
+        </div>
+        <div class="square-data sq-4">
+            <strong>DONATE</strong>
+            <p>Redirect currency vectors to Ryan's Well Foundation.</p>
+        </div>
+    </div>
+
+    <main>
+        <section id="survival" style="background: var(--bright-orange);">
+            <div class="content-card">
+                <h1>The First Human <span class="vector-text">Motion</span></h1>
+                <blockquote>"The first survival method was the binary choice: Is it clean? Or is it dirty?"</blockquote>
+                <p>The <span class="vector-text">decisional pressure</span> of filling the biological void is the foundation of all human logic. This website vectors 15,000 words of intelligence into a single interface to enlighten the cortex.</p>
+                <p style="margin-top:20px;">Every cell in the body is a terminal waiting for high-quality input. To flood the system is to ensure survival at a <span class="vector-text">4DK2HD</span> resolution.</p>
+            </div>
+        </section>
+
+        <section id="oxygen" style="background: var(--dark-purple);">
+            <div class="content-card">
+                <h2 style="background: var(--dark-orange);">The <span class="vector-text">Oxygenated</span> Flux</h2>
+                <p>Liquid oxygen is not just a concept; it is the <span class="vector-text">main source</span> of athletic and mental performance. When you see athletes on the sideline, they are recalibrating their blood oxygenation levels.</p>
+                
+                <p>By finding the best water in Canada, you are participating in a <span class="vector-text">molecular enhancement</span>. Pure water flushes unwanted fluxes, keeping the blood clean and the memory sharp.</p>
+            </div>
+        </section>
+
+        <section id="telkwa" style="background: var(--lukewarm-purple);">
+            <div class="content-card">
+                <h2 style="background: var(--bright-orange);">Telkwa Village: <span class="vector-text">Unsanity</span> Voids</h2>
+                <p>Awareness must be raised for places like <span class="vector-text">Telkwa Village</span>, where unsanity well water still persists in specific sectors. It is an unknown factor that we must vectorize and solve.</p>
+                <p>From Smithers to the midst of Canada, the availability of <span class="vector-text">fresh tap water</span> locations is a basic need of water aid. We must analyze the factorization of how some regions still lack the pure hydration required for cortical enlightenment.</p>
+                <blockquote>"Survival is not a luxury; it is a calculation of pure hydration."</blockquote>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // TOGGLE HUB WIDGET
+        function toggleHub() {
+            const hub = document.getElementById('main-hub');
+            hub.classList.toggle('hub-active');
+            const core = document.querySelector('.core-circle');
+            if(hub.classList.contains('hub-active')) {
+                core.style.transform = "rotate(45deg) scale(0.8)";
+                core.innerHTML = "CLOSE<br>VECTOR";
+            } else {
+                core.style.transform = "rotate(0deg) scale(1)";
+                core.innerHTML = "KNOW THE<br>UNKNOWN";
+            }
+        }
+
+        // SCROLL REVELATION LOGIC
+        const observerOptions = { threshold: 0.3 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.querySelector('.content-card').classList.add('active');
+                    // Change Nav Highlight
+                    const id = entry.target.getAttribute('id');
+                    document.querySelectorAll('.gliding-nav a').forEach(a => {
+                        a.style.background = a.getAttribute('href') === `#${id}` ? 'var(--bright-orange)' : 'transparent';
+                    });
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // GLIDING MENU SMOOTHING
+        document.querySelectorAll('.gliding-nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>At Foot-Steps of Water | 4DK-2HD Intelligence</title>
+    <style>
+        /* COLOR SPECTRUM MAPPING */
+        :root {
+            --bright-orange: #ff8c00;
+            --dark-orange: #e65100;
+            --lemon-green: #ccff00;
+            --dark-purple: #311b92;
+            --lukewarm-purple: #7e57c2;
+            --pure-white: #ffffff;
+            --void-black: #000000;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--pure-white);
+            color: var(--void-black);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* TOP GLIDING CONTRAST MENU */
+        .gliding-nav {
+            position: fixed;
+            top: 0; width: 100%;
+            height: 70px;
+            background: linear-gradient(90deg, var(--dark-purple), var(--dark-orange));
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .gliding-nav a {
+            color: var(--lemon-green);
+            text-decoration: none;
+            font-weight: 900;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            transition: 0.3s;
+            padding: 10px 20px;
+        }
+
+        .gliding-nav a:hover {
+            background: var(--bright-orange);
+            color: var(--void-black);
+            border-radius: 5px;
+        }
+
+        /* 2PX INTELLIGENT KEYWORD VECTORING */
+        .vector-text {
+            font-size: calc(1em + 2px);
+            font-weight: bold;
+            color: var(--dark-purple);
+            font-style: italic;
+        }
+
+        /* SECTIONAL SLIDE & GLIDE ARCHITECTURE */
+        section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 10%;
+            transition: 1s transform ease;
+        }
+
+        .content-card {
+            background: var(--lemon-green);
+            padding: 60px;
+            border-radius: 0 100px 0 100px;
+            border: 8px solid var(--dark-purple);
+            box-shadow: 20px 20px 0px var(--bright-orange);
+            max-width: 1000px;
+            transform: translateY(50px);
+            opacity: 0;
+            transition: 1s all ease;
+        }
+
+        .content-card.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        h1, h2 { 
+            text-transform: uppercase; 
+            margin-bottom: 20px; 
+            background: var(--dark-purple);
+            color: var(--lemon-green);
+            padding: 10px;
+            display: inline-block;
+        }
+
+        /* CIRCULAR WIDGET SYSTEM */
+        .widget-hub {
+            position: fixed;
+            bottom: 40px; right: 40px;
+            z-index: 2000;
+        }
+
+        .core-circle {
+            width: 140px; height: 140px;
+            background: var(--bright-orange);
+            border: 5px solid var(--dark-purple);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 900;
+            text-align: center;
+            font-size: 0.7rem;
+            box-shadow: 0 0 30px var(--bright-orange);
+            transition: 0.5s;
+        }
+
+        .square-data {
+            position: absolute;
+            width: 180px; height: 180px;
+            background: var(--lukewarm-purple);
+            border: 3px solid var(--lemon-green);
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            opacity: 0;
+            transform: scale(0);
+            transition: 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            pointer-events: none;
+            color: var(--pure-white);
+            font-size: 0.8rem;
+        }
+
+        .hub-active .sq-1 { opacity: 1; transform: translate(-220px, -220px) scale(1); pointer-events: auto; }
+        .hub-active .sq-2 { opacity: 1; transform: translate(40px, -220px) scale(1); pointer-events: auto; }
+        .hub-active .sq-3 { opacity: 1; transform: translate(-220px, 40px) scale(1); pointer-events: auto; }
+        .hub-active .sq-4 { opacity: 1; transform: translate(40px, 40px) scale(1); pointer-events: auto; }
+
+        /* SCROLL BAR */
+        ::-webkit-scrollbar { width: 15px; }
+        ::-webkit-scrollbar-track { background: var(--dark-purple); }
+        ::-webkit-scrollbar-thumb { background: var(--lemon-green); border: 3px solid var(--dark-purple); }
+
+        /* ITALIC QUOTATION BLOCKS */
+        blockquote {
+            font-style: italic;
+            border-left: 10px solid var(--dark-orange);
+            padding-left: 20px;
+            margin: 20px 0;
+            color: var(--dark-purple);
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="gliding-nav">
+        <a href="#survival">Survival Vector</a>
+        <a href="#oxygen">Oxygen Matrix</a>
+        <a href="#canada">Canadian Voids</a>
+        <a href="#telkwa">Telkwa Awareness</a>
+        <a href="#aid">Global Aid</a>
+    </nav>
+
+    <div class="widget-hub" id="main-hub">
+        <div class="core-circle" onclick="toggleHub()">
+            KNOW THE<br>UNKNOWN
+        </div>
+        <div class="square-data sq-1">
+            <strong>SMITHEERS BC</strong>
+            <p>The One Water Store: A pinnacle of high-filtration intelligence.</p>
+            <a href="https://www.tipoftheglacier.com/" style="color:var(--lemon-green)">VISIT SOURCE</a>
+        </div>
+        <div class="square-data sq-2">
+            <strong>HYDRATION</strong>
+            <p>Calculate the input/output ratio of your cellular engine.</p>
+        </div>
+        <div class="square-data sq-3">
+            <strong>PURE BREATHS</strong>
+            <p>Oxygen-Liquid bonds ($O_2+H_2$) are the fuel for the cortex.</p>
+        </div>
+        <div class="square-data sq-4">
+            <strong>DONATE</strong>
+            <p>Redirect currency vectors to Ryan's Well Foundation.</p>
+        </div>
+    </div>
+
+    <main>
+        <section id="survival" style="background: var(--bright-orange);">
+            <div class="content-card">
+                <h1>The First Human <span class="vector-text">Motion</span></h1>
+                <blockquote>"The first survival method was the binary choice: Is it clean? Or is it dirty?"</blockquote>
+                <p>The <span class="vector-text">decisional pressure</span> of filling the biological void is the foundation of all human logic. This website vectors 15,000 words of intelligence into a single interface to enlighten the cortex.</p>
+                <p style="margin-top:20px;">Every cell in the body is a terminal waiting for high-quality input. To flood the system is to ensure survival at a <span class="vector-text">4DK2HD</span> resolution.</p>
+            </div>
+        </section>
+
+        <section id="oxygen" style="background: var(--dark-purple);">
+            <div class="content-card">
+                <h2 style="background: var(--dark-orange);">The <span class="vector-text">Oxygenated</span> Flux</h2>
+                <p>Liquid oxygen is not just a concept; it is the <span class="vector-text">main source</span> of athletic and mental performance. When you see athletes on the sideline, they are recalibrating their blood oxygenation levels.</p>
+                
+                <p>By finding the best water in Canada, you are participating in a <span class="vector-text">molecular enhancement</span>. Pure water flushes unwanted fluxes, keeping the blood clean and the memory sharp.</p>
+            </div>
+        </section>
+
+        <section id="telkwa" style="background: var(--lukewarm-purple);">
+            <div class="content-card">
+                <h2 style="background: var(--bright-orange);">Telkwa Village: <span class="vector-text">Unsanity</span> Voids</h2>
+                <p>Awareness must be raised for places like <span class="vector-text">Telkwa Village</span>, where unsanity well water still persists in specific sectors. It is an unknown factor that we must vectorize and solve.</p>
+                <p>From Smithers to the midst of Canada, the availability of <span class="vector-text">fresh tap water</span> locations is a basic need of water aid. We must analyze the factorization of how some regions still lack the pure hydration required for cortical enlightenment.</p>
+                <blockquote>"Survival is not a luxury; it is a calculation of pure hydration."</blockquote>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // TOGGLE HUB WIDGET
+        function toggleHub() {
+            const hub = document.getElementById('main-hub');
+            hub.classList.toggle('hub-active');
+            const core = document.querySelector('.core-circle');
+            if(hub.classList.contains('hub-active')) {
+                core.style.transform = "rotate(45deg) scale(0.8)";
+                core.innerHTML = "CLOSE<br>VECTOR";
+            } else {
+                core.style.transform = "rotate(0deg) scale(1)";
+                core.innerHTML = "KNOW THE<br>UNKNOWN";
+            }
+        }
+
+        // SCROLL REVELATION LOGIC
+        const observerOptions = { threshold: 0.3 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.querySelector('.content-card').classList.add('active');
+                    // Change Nav Highlight
+                    const id = entry.target.getAttribute('id');
+                    document.querySelectorAll('.gliding-nav a').forEach(a => {
+                        a.style.background = a.getAttribute('href') === `#${id}` ? 'var(--bright-orange)' : 'transparent';
+                    });
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // GLIDING MENU SMOOTHING
+        document.querySelectorAll('.gliding-nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
